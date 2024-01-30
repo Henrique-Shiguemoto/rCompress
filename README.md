@@ -4,7 +4,7 @@ Simple library for the purposes of compressing and decompressing streams of byte
 
 ## Features
 
-- Compressing data
+- Compressing data (from RAM or disk)
 - Decompressing data
 - Easy to use interface
 - Easy integration with other C/C++ projects
