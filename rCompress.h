@@ -13,7 +13,7 @@ typedef enum rc_algorithm {
 	RC_ALGORITHM_HUFFMAN,
 } rc_algorithm;
 
-typedef char rc_byte;
+typedef unsigned char rc_byte;
 
 int rc_compress(rc_byte* bytes, unsigned int data_size, rc_algorithm algorithm, rc_byte* destination);
 int rc_compress_from_file(const char* filename, rc_algorithm algorithm, rc_byte* destination);

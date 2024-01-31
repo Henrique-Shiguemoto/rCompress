@@ -55,7 +55,33 @@ int rc_compress_from_file(const char* filename, rc_algorithm algorithm, rc_byte*
 
 // DECOMPRESSION
 static int _rc_decompress_rle(rc_byte* bytes, unsigned int data_size, rc_byte* destination){
-	return RC_FAILURE;
+	if(!bytes || !destination || data_size <= 0) return RC_FAILURE;
+
+	rc_byte prev_byte = bytes[0];
+	unsigned int i = 1;
+	rc_byte current_byte_to_repeat = 0;
+	unsigned char times_to_repeat_byte = 0;
+
+	unsigned int dest_i = 0;
+
+	do {
+		rc_byte byte = bytes[i];
+		if(prev_byte == '*'){
+			current_byte_to_repeat = byte;
+			times_to_repeat_byte = bytes[++i];
+			
+			unsigned char j = 0;
+			while(j < times_to_repeat_byte){
+				destination[dest_i++] = current_byte_to_repeat;
+				++j;
+			}
+		}
+
+		prev_byte = byte;
+		++i;
+	} while(i <= data_size);
+
+	return RC_SUCCESS;
 }
 
 static int _rc_decompress_huffman(rc_byte* bytes, unsigned int data_size, rc_byte* destination){
