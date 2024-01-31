@@ -6,6 +6,7 @@
 #define RC_FAILURE  					0
 #define RC_SUCCESS 						1
 #define RC_RLE_REPETITION_INDICATOR 	'*'
+#define RC_RLE_REPETITION_MAX_COUNT 	64
 
 typedef enum rc_algorithm {
 	RC_ALGORITHM_RLE = 0,
@@ -14,10 +15,10 @@ typedef enum rc_algorithm {
 
 typedef char rc_byte;
 
-int rc_compress(rc_byte* bytes, unsigned long data_size, rc_algorithm algorithm, rc_byte* destination);
+int rc_compress(rc_byte* bytes, unsigned int data_size, rc_algorithm algorithm, rc_byte* destination);
 int rc_compress_from_file(const char* filename, rc_algorithm algorithm, rc_byte* destination);
 
-int rc_decompress(rc_byte* bytes, unsigned long data_size, rc_algorithm algorithm, rc_byte* destination);
+int rc_decompress(rc_byte* bytes, unsigned int data_size, rc_algorithm algorithm, rc_byte* destination);
 int rc_decompress_from_file(const char* filename, rc_algorithm algorithm, rc_byte* destination);
 
 #endif // RCOMPRESS_H

@@ -7,10 +7,10 @@ DEBUGGER=gdb
 all:
 	$(COMPILER) $(COMPILER_FLAGS) -o $(BIN) $(SRC)
 
-debug:
+debug: all
 	$(DEBUGGER) $(BIN)
 
-run:
+run: all
 	$(BIN)
 
 clean:
